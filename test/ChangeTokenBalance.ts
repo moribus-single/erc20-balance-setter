@@ -45,7 +45,7 @@ describe("ERC20", function () {
       const [user1] = await hre.ethers.getSigners();
 
       // Find slot index for setting token balance
-      let targetSlot = await findBalanceSlot(user1.address, token, 100n);
+      let targetSlot = await findBalanceSlot(user1.address, token, 15);
 
       // Target slot for simple token is zero
       expect(targetSlot).eq(0);
@@ -57,7 +57,7 @@ describe("ERC20", function () {
       const [user1] = await hre.ethers.getSigners();
 
       // Find slot index for setting token balance
-      let targetSlot = await findBalanceSlot(user1.address, token, 100n);
+      let targetSlot = await findBalanceSlot(user1.address, token, 15);
 
       // Target slot for simple token is zero
       expect(targetSlot).eq(2);
@@ -69,7 +69,7 @@ describe("ERC20", function () {
       const [user1] = await hre.ethers.getSigners();
 
       // Find slot index for setting token balance
-      let targetSlot = await findBalanceSlot(user1.address, token, 100n);
+      let targetSlot = await findBalanceSlot(user1.address, token, 15);
 
       // Target slot for simple token is zero
       expect(targetSlot).eq(13);

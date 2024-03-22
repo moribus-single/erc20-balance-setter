@@ -4,6 +4,9 @@ pragma solidity ^0.8.24;
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
+/// @title Simple ERC20 implementation
+/// @author Galas Danil
+/// @notice _balances map in the zero slot
 contract SimpleToken is ERC20 {
     constructor() ERC20("T", "T") {}
 
@@ -17,6 +20,9 @@ contract SimpleToken is ERC20 {
     }
 }
 
+/// @title Custom mock ERC20 implementation
+/// @author Galas Danil
+/// @notice _balances map in the second slot
 contract CustomToken1 {
     // Some variables
     uint256 private a;
@@ -34,6 +40,9 @@ contract CustomToken1 {
     }
 }
 
+/// @title Custom mock ERC20 implementation
+/// @author Galas Danil
+/// @notice _balances map in slot thirteen
 contract CustomToken2 {
     // Some variables
     uint256 private a;

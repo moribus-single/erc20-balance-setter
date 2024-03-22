@@ -8,17 +8,18 @@ import { IERC20 } from "../typechain-types";
  * @param signer - The address of the account whose balance is being searched.
  * @param token - The ERC20 contract instance.
  * @param value - The expected balance value.
- * @returns The balance slot index, or undefined if the balance was not found.
+ * @returns The balance slot index, or undefined if the balance was not found within the range.
  */
-export async function findBalanceSlot<T extends IERC20>(signer: string, token: T, value: bigint): Promise<number | undefined> {
+export async function findBalanceSlot<T extends IERC20>(signer: string, token: T, range: number): Promise<number | undefined> {
     const tokenAddress = await token.getAddress();
-    const hexValue = hre.ethers.toBeHex(value, 32);
+    const value = BigInt(123);
+    const hexValue = hre.ethers.toBeHex(123, 32);
 
-    for (let slot = 0; slot < 30; slot++) {
+    for (let slot = 0; slot < range; slot++) {
         // Getting target slot for changing user balance directly
         //
         // _balances[address] = keccak256(abi.encodePacked(address, slot))
-        // where slot ∊ [0..30]
+        // where slot index ∊ [0..30]
         const targetSlot = hre.ethers.solidityPackedKeccak256(["uint256", "uint256"], [signer, slot])
 
         // Firstly, we get value already stores at the target slot
@@ -34,7 +35,7 @@ export async function findBalanceSlot<T extends IERC20>(signer: string, token: T
             return slot;
         }
 
-        // for preventing errors in contract logic data
+        // For preventing errors in contract logic data
         await setStorageAt(tokenAddress, targetSlot, actualValue);
     }
 }
