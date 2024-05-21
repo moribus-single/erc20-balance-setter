@@ -1,6 +1,6 @@
 # Detect ERC20 token balances storage slot for overriding balances
-**Problem:** Storing ERC20 token holders with some balance (the bigger, the better) <br>
-**Solution** Detect index of the balances mapping slot to change the balance for some user and use the tokens
+**Problem:** Collecting ERC20 token holders with some balance (the bigger, the better) <br>
+**Solution** Detect index of the 'balances' mapping slot to change the balance for some user and use the tokens
 
 
 ## Overview
